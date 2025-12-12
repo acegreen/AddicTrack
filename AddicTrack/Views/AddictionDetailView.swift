@@ -24,9 +24,6 @@ struct AddictionDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // Statistics Section
-                StatisticsSection(viewModel: viewModel)
-                
                 // Entries Section
                 EntriesSection(
                     entries: viewModel.entries,
@@ -55,65 +52,6 @@ struct AddictionDetailView: View {
             viewModel.setModelContext(modelContext)
         }
         // .enableInjection()
-    }
-}
-
-struct StatisticsSection: View {
-    let viewModel: AddictionDetailViewModel
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Statistics")
-                .font(.headline)
-            
-            HStack(spacing: 20) {
-                StatCard(
-                    title: "Total Entries",
-                    value: "\(viewModel.totalEntries)",
-                    icon: "list.number"
-                )
-                
-                StatCard(
-                    title: "This Week",
-                    value: "\(viewModel.entriesThisWeek)",
-                    icon: "calendar"
-                )
-                
-                if let daysSince = viewModel.daysSinceLastEntry {
-                    StatCard(
-                        title: "Days Since",
-                        value: "\(daysSince)",
-                        icon: "clock"
-                    )
-                }
-            }
-        }
-    }
-}
-
-struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(.blue)
-            
-            Text(value)
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
 }
 

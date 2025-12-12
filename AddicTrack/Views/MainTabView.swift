@@ -21,6 +21,11 @@ struct MainTabView: View {
                     Label("Addictions", systemImage: "heart.circle.fill")
                 }
             
+            AnalyticsView(settingsViewModel: settingsViewModel)
+                .tabItem {
+                    Label("Analytics", systemImage: "chart.bar.fill")
+                }
+            
             SettingsView(viewModel: settingsViewModel)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
