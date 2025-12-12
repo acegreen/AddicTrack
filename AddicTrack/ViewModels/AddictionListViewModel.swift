@@ -63,11 +63,11 @@ final class AddictionListViewModel {
         }
     }
     
-    func addAddiction(name: String, description: String?, colorHex: String) {
+    func addAddiction(name: String, description: String?, iconName: String) {
         guard let modelContext = modelContext else { return }
         guard let currentUser = currentUser else { return }
         
-        let newAddiction = Addiction(name: name, desc: description, colorHex: colorHex, user: currentUser)
+        let newAddiction = Addiction(name: name, desc: description, iconName: iconName, user: currentUser)
         modelContext.insert(newAddiction)
         
         // Add to user's addictions array

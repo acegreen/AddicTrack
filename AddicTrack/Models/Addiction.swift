@@ -14,17 +14,17 @@ final class Addiction: Identifiable {
     var name: String
     var desc: String?
     var createdAt: Date
-    var colorHex: String // For UI customization
+    var iconName: String // SF Symbol name
     @Relationship(deleteRule: .cascade, inverse: \AddictionEntry.addiction)
     var entries: [AddictionEntry]?
     var user: User?
     
-    init(name: String, desc: String? = nil, colorHex: String = "#007AFF", user: User? = nil) {
+    init(name: String, desc: String? = nil, iconName: String = "heart.circle.fill", user: User? = nil) {
         self.id = UUID()
         self.name = name
         self.desc = desc
         self.createdAt = Date()
-        self.colorHex = colorHex
+        self.iconName = iconName
         self.entries = []
         self.user = user
     }
