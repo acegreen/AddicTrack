@@ -37,15 +37,16 @@ final class AddictionListViewModel {
         isLoading = true
         errorMessage = nil
         
+        // Use the relationship directly - fetch all addictions and filter by user relationship
+        // SwiftData predicates have limitations with optional relationships, so we'll use the inverse relationship
         let descriptor = FetchDescriptor<Addiction>(
-            predicate: #Predicate<Addiction> { addiction in
-                addiction.user?.id == currentUser.id
-            },
             sortBy: [SortDescriptor(\.createdAt, order: .reverse)]
         )
         
         do {
-            addictions = try modelContext.fetch(descriptor)
+            let allAddictions = try modelContext.fetch(descriptor)
+            // Filter by current user manually since predicate with optional relationships is problematic
+            addictions = allAddictions.filter { $0.user?.id == currentUser.id }
             isLoading = false
         } catch {
             errorMessage = "Failed to load addictions: \(error.localizedDescription)"

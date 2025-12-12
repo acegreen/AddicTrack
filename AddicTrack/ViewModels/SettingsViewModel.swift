@@ -88,10 +88,13 @@ final class SettingsViewModel {
                     return
                 }
                 
+                // Capture email value for predicate
+                let emailToFind = self.email
+                
                 // Find or create user
                 let descriptor = FetchDescriptor<User>(
                     predicate: #Predicate<User> { user in
-                        user.email == self.email
+                        user.email == emailToFind
                     }
                 )
                 
@@ -177,10 +180,13 @@ final class SettingsViewModel {
                     return
                 }
                 
+                // Capture email value for predicate
+                let emailToFind = self.email
+                
                 // Check if user already exists
                 let descriptor = FetchDescriptor<User>(
                     predicate: #Predicate<User> { user in
-                        user.email == self.email
+                        user.email == emailToFind
                     }
                 )
                 
